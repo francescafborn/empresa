@@ -29,6 +29,10 @@ public class ControladorEmpresa {
         boolean resultado = DaoEmpresa.inserir(objeto);
         if (resultado) {
             JOptionPane.showMessageDialog(null, "Inserido com sucesso!");
+            if (man.listagem != null) {
+            atualizarTabela(man.listagem.tabela); //atualizar a tabela da listagem
+            }
+            man.dispose();//fechar a tela da manutenção
         } else {
             JOptionPane.showMessageDialog(null, "Erro!");
         }
@@ -44,6 +48,10 @@ public class ControladorEmpresa {
         boolean resultado = DaoEmpresa.alterar(objeto);
         if (resultado) {
             JOptionPane.showMessageDialog(null, "Alterado com sucesso!");
+            if (man.listagem != null) {
+            atualizarTabela(man.listagem.tabela); //atualizar a tabela da listagem
+            }
+            man.dispose();//fechar a tela da manutenção
         } else {
             JOptionPane.showMessageDialog(null, "Erro!");
         }
@@ -57,6 +65,10 @@ public class ControladorEmpresa {
         boolean resultado = DaoEmpresa.excluir(objeto);
         if (resultado) {
             JOptionPane.showMessageDialog(null, "Excluído com sucesso!");
+            if (man.listagem != null) {
+            atualizarTabela(man.listagem.tabela); //atualizar a tabela da listagem
+            }
+            man.dispose();//fechar a tela da manutenção
         } else {
             JOptionPane.showMessageDialog(null, "Erro!");
         }  
@@ -80,5 +92,17 @@ public class ControladorEmpresa {
             modelo.addRow(linha); //adicionando a linha na tabela
         }
         tabela.setModel(modelo);
+    }
+    
+    public static void atualizaCampos(ManutencaoEmpresa man, int pk){ 
+        Empresa objeto = DaoEmpresa.consultar(pk);
+        //Definindo os valores do campo na tela (um para cada atributo/campo)
+        
+        man.jtfRazao_social.setText(objeto.getRazao_social());
+        man.jtfNome_fantasia.setText(objeto.getNome_fantasia());
+        man.jtfCodigo.setText(objeto.getCodigo().toString());
+        
+        man.jtfCodigo.setEnabled(false); //desabilitando o campo código
+        man.btnIncerir.setEnabled(false); //desabilitando o botão adicionar
     }
 }

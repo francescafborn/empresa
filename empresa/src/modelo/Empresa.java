@@ -12,7 +12,7 @@ package modelo;
 public class Empresa {
    private String razao_social;
    private String nome_fantasia;
-   private int codigo;
+   private Integer codigo;
 
     public String getRazao_social() {
         return razao_social;
@@ -30,11 +30,11 @@ public class Empresa {
         this.nome_fantasia = nome_fantasia;
     }
 
-    public int getCodigo() {
+    public Integer getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(Integer codigo) {
         this.codigo = codigo;
     }
 
